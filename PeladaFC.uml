@@ -1768,12 +1768,14 @@ referentes a quantidade de estrelas
 <XPD:ATTR name="#Attributes" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Attributes[0]" type="UMLAttribute" guid="bxgHP2d7I0qh3qAuK/J+GQAA">
 <XPD:ATTR name="Name" type="string">timeA</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">Time</XPD:ATTR>
 <XPD:REF name="Type_">oDQKy2wSsUKrvd2Y0iYrxgAA</XPD:REF>
 <XPD:REF name="Owner">YrORCE2DiE2r8GXk0w6DAQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[1]" type="UMLAttribute" guid="FSDLdj0sbkmzrz3SYZ1lxQAA">
 <XPD:ATTR name="Name" type="string">timeB</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">Time</XPD:ATTR>
 <XPD:REF name="Type_">oDQKy2wSsUKrvd2Y0iYrxgAA</XPD:REF>
 <XPD:REF name="Owner">YrORCE2DiE2r8GXk0w6DAQAA</XPD:REF>
