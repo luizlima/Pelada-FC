@@ -2616,8 +2616,8 @@ referentes a quantidade de estrelas
 <XPD:OBJ name="OwnedViews[1]" type="UMLClassView" guid="y+ETEJCATkWvZVYtbPq2WQAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">448</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">20</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">408</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">24</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">184</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">82</XPD:ATTR>
 <XPD:REF name="Model">dOCo4x9Nx0KtOl6vFGLN8AAA</XPD:REF>
@@ -2647,8 +2647,8 @@ referentes a quantidade de estrelas
 <XPD:OBJ name="OwnedViews[2]" type="UMLClassView" guid="sVhFX277gEulMAkKA8hGPQAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">740</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">20</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">684</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">24</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">248</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">69</XPD:ATTR>
 <XPD:REF name="Model">0Vk1ZuFA/U+IyI+U6sALQQAA</XPD:REF>
@@ -2678,8 +2678,8 @@ referentes a quantidade de estrelas
 <XPD:OBJ name="OwnedViews[3]" type="UMLClassView" guid="BdUSpqTR70G52X69kTgzBgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">216</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">172</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">372</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">196</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">80</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">43</XPD:ATTR>
 <XPD:REF name="Model">YS6uq8/Yd0WnfvT2qZOo8gAA</XPD:REF>
@@ -2709,8 +2709,8 @@ referentes a quantidade de estrelas
 <XPD:OBJ name="OwnedViews[4]" type="UMLClassView" guid="FtiskIvP4ES5eTDHTJcJgwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">448</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">168</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">604</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">200</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">86</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">43</XPD:ATTR>
 <XPD:REF name="Model">rfwOHkMka0WPgjnr+1YCxgAA</XPD:REF>
@@ -2740,8 +2740,8 @@ referentes a quantidade de estrelas
 <XPD:OBJ name="OwnedViews[5]" type="UMLNoteView" guid="LbJWk1GiKkyQyAzRXKQerQAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">220</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">260</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">332</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">300</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">165</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">38</XPD:ATTR>
 <XPD:ATTR name="Text" type="string">Não sei se será 
@@ -2751,15 +2751,15 @@ preciso ter um dao pra partida
 <XPD:OBJ name="OwnedViews[6]" type="UMLNoteLinkView" guid="nBScfvcvxUKsKWXr8f9CngAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">292,260;267,214</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">413,300;412,238</XPD:ATTR>
 <XPD:REF name="Head">BdUSpqTR70G52X69kTgzBgAA</XPD:REF>
 <XPD:REF name="Tail">LbJWk1GiKkyQyAzRXKQerQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[7]" type="UMLNoteView" guid="FOm3U1GJIEeXlL/E84tUuwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">476</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">260</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">584</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">304</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">132</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">38</XPD:ATTR>
 <XPD:ATTR name="Text" type="string">não sei se será preciso 
@@ -2769,7 +2769,7 @@ ter um dao para pelada
 <XPD:OBJ name="OwnedViews[8]" type="UMLNoteLinkView" guid="ZVkYPWVp0k+RfCJuY2Gb7AAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">531,260;502,210</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">648,304;647,242</XPD:ATTR>
 <XPD:REF name="Head">FtiskIvP4ES5eTDHTJcJgwAA</XPD:REF>
 <XPD:REF name="Tail">FOm3U1GJIEeXlL/E84tUuwAA</XPD:REF>
 </XPD:OBJ>
