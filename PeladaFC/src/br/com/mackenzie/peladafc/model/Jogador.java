@@ -28,4 +28,51 @@ public class Jogador {
 	/** */
 	private int classificao;
 	
+	public Jogador() {
+		// TODO Auto-generated constructor stub
+		this.setNome("");
+		this.setApelido("");
+		this.setClassificao(0);
+	}
+	
+	public Jogador(String nome, String apelido, int classificao) {
+		// TODO Auto-generated constructor stub
+		this.setNome(nome);
+		this.setApelido(apelido);
+		this.setClassificao(classificao);
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getApelido() {
+		return apelido;
+	}
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
+
+	public int getClassificao() {
+		return classificao;
+	}
+
+	public void setClassificao(int classificao) {
+		this.classificao = classificao;
+	}
+
+	
 }
