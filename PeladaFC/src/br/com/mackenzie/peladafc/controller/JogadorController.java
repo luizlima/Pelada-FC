@@ -1,10 +1,12 @@
 package br.com.mackenzie.peladafc.controller;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import br.com.mackenzie.peladafc.dao.JogadorDAO;
 import br.com.mackenzie.peladafc.model.Jogador;
+import br.com.mackenzie.peladafc.exception.*;
 
 //
 //
@@ -18,58 +20,63 @@ import br.com.mackenzie.peladafc.model.Jogador;
 //
 
 
-
-
 /** */
 public class JogadorController {
 	/** */
-	private LinkedList<Jogador> jogadores;
+	private List<Jogador> jogadores;
 	
 	/** */
-	private JogadorController instance;
-	
-	/** */
-	public Jogador jogador;
+	private Jogador jogador;
 		
 	/** */
-	public JogadorDAO jogadorDAO;
+	private JogadorDAO jogadorDAO;
+	
+	private Context viewContext;
 	
 	/** */
-	public void adicionar(String nome, String apelido) {
+	public void adicionar(String nome, String apelido){
+		jogador = new Jogador(nome,apelido,3);
+		jogadorDAO.adiciona(jogador);
+	}
 	
+	/**
+	 * @throws ConsultarJogadorException  */
+	public List<Jogador> consultarPorNome(String nome) throws ControllerException {
+		if(nome.length() > 2)
+			jogadores = jogadorDAO.obterListaJogadorNome(nome);
+		else
+			throw new ControllerException("Para iniciar a consulta é preciso ter no mínimo 3 caracteres na palavra");
+			
+		return jogadores;
 	}
 	
 	/** */
-	public Jogador consultarPorNome(Object nome) {
-		return null;
-	
+	public void atualizar(Jogador jogador) {
+		jogadorDAO.atualiza(jogador);
 	}
 	
-	/** */
-	public void atualizar(Object jogador) {
-	
-	}
-	
-	/** */
-	public Jogador obterJogadorApelido(String apelido) {
-		return null;
-	
+	/**
+	 * @throws ConsultarJogadorException  */
+	public List<Jogador> obterJogadoresApelido(String apelido) throws ControllerException {
+		if(apelido.length() > 2)
+			jogadores = jogadorDAO.obterListaJogadorApelido(apelido);
+		else
+			throw new ControllerException("Para iniciar a consulta é preciso ter no mínimo 3 caracteres na palavra");
+			
+		return jogadores;
 	}
 	
 	/** */
 	public List<Jogador> obterJogadores() {
-		return null;
-		
+		return jogadorDAO.obterListaJogadores();
+	}
+
+	/** */
+	public JogadorController(Context context) {
+		this.jogadores =  new ArrayList<Jogador>();
+		this.viewContext = context;
+		this.jogadorDAO = new JogadorDAO(viewContext);
 	}
 	
-	/** */
-	public JogadorController getInstance() {
-		return null;
-		
-	}
 	
-	/** */
-	private JogadorController() {
-		
-	}
 }

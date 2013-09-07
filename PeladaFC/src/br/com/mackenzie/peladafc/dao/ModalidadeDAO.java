@@ -2,6 +2,7 @@ package br.com.mackenzie.peladafc.dao;
 
 import java.util.List;
 
+import android.content.Context;
 import br.com.mackenzie.peladafc.controller.JogadorController;
 import br.com.mackenzie.peladafc.model.Modalidade;
 
@@ -22,8 +23,7 @@ import br.com.mackenzie.peladafc.model.Modalidade;
 /** */
 public class ModalidadeDAO {
 	
-	/** */
-	public ModalidadeDAO instance;
+	private Context context;
 	
 	/** */
 	public List<Modalidade> obterModalidades() {
@@ -35,8 +35,8 @@ public class ModalidadeDAO {
 		return null;
 	}
 	
-	/** */
-	public JogadorController getInstance() {
-		return null;
+	public ModalidadeDAO(Context context) {
+		// TODO Auto-generated constructor stub
+		this.context = context;
 	}
 }

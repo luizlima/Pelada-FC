@@ -2,6 +2,7 @@ package br.com.mackenzie.peladafc.dao;
 
 import java.util.List;
 
+import android.content.Context;
 import br.com.mackenzie.peladafc.model.Time;
 
 //
@@ -21,8 +22,7 @@ import br.com.mackenzie.peladafc.model.Time;
 /** */
 public class TimeDAO {
 	
-	/** */
-	public TimeDAO instance;
+	private Context context;
 	
 	/** */
 	public void inserirTime(Time time) {
@@ -44,8 +44,8 @@ public class TimeDAO {
 		return null;
 	}
 	
-	/** */
-	public TimeDAO getInstance() {
-		return null;
+	public TimeDAO(Context context) {
+		// TODO Auto-generated constructor stub
+		this.context = context;
 	}
 }
