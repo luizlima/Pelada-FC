@@ -36,7 +36,7 @@ public class JogadorDAO {
 	}
 	
 	/** */
-	public List<Jogador> obterJogadores() {
+	public List<Jogador> obterListaJogadores() {
 		return null;
 	
 	}
@@ -47,12 +47,12 @@ public class JogadorDAO {
 	}
 	
 	/** */
-	public List<Jogador> obterJogadorApelido(String apelido) {
+	public List<Jogador> obterListaJogadorApelido(String apelido) {
 		return null;
 	}
 	
 	/** */
-	public List<Jogador> obterJogaorNome(String nome) {
+	public List<Jogador> obterListaJogadorNome(String nome) {
 		return null;
 	}
 	
