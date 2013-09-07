@@ -2,6 +2,10 @@ package br.com.mackenzie.peladafc.dao;
 
 import java.util.List;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import br.com.mackenzie.peladafc.model.Jogador;
 
 //
@@ -20,14 +24,34 @@ import br.com.mackenzie.peladafc.model.Jogador;
 
 /** */
 public class JogadorDAO {
+	
+	private SQLiteDatabase database;
+	private DbHelper dbHelper;
+	private String[] allColumns = {DbHelper.COLUNA_ID_JOGADOR, DbHelper.COLUNA_NOME_JOGADOR, 
+			DbHelper.COLUNA_APELIDO_JOGADOR,DbHelper.COLUNA_CLASSIFICACAO_JOGADOR };
+	
+	public JogadorDAO(Context context) {          
+		dbHelper = new DbHelper(context);
+	}
+	
+	
+	private Jogador cursorToJogador(Cursor cursor) {
+		Jogador jogador = new Jogador();
+		jogador.setId(cursor.getInt(0));
+		jogador.setNome(cursor.getString(1));
+		jogador.setApelido(cursor.getString(2));
+		jogador.setClassificao(cursor.getInt(3));
+		return jogador;
+	}
 
-	
-	/** */
-	public JogadorDAO instance;
-	
 	/** */
 	public void adiciona(Jogador jogador) {
-	
+        ContentValues values = new ContentValues(); 
+        values.put(DbHelper.COLUNA_NOME_JOGADOR, jogador.getNome()); 
+        values.put(DbHelper.COLUNA_APELIDO_JOGADOR,jogador.getApelido()); 
+        values.put(DbHelper.COLUNA_CLASSIFICACAO_JOGADOR, jogador.getClassificao()); 
+        database.insert(DbHelper.TABELA_JOGADOR, null, values); 
+
 	}
 	
 	/** */
@@ -43,8 +67,12 @@ public class JogadorDAO {
 	
 	/** */
 	public Jogador obterJogador(int id) {
-		return null;
-	}
+     // To show how to query 
+      Cursor cursor = database.query(DbHelper.TABELA_JOGADOR, allColumns, DbHelper.COLUNA_ID_JOGADOR + " = " + 
+      id, null,null, null, null); 
+      cursor.moveToFirst(); 
+      return cursorToJogador(cursor); 	
+    }
 	
 	/** */
 	public List<Jogador> obterListaJogadorApelido(String apelido) {
@@ -56,8 +84,5 @@ public class JogadorDAO {
 		return null;
 	}
 	
-	/** */
-	public JogadorDAO getInstance() {
-		return null;
-	}
+
 }
