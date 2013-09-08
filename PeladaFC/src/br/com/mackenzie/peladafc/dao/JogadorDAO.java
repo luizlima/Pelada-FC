@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Jogador;
 
 //
@@ -46,7 +47,7 @@ public class JogadorDAO {
 	}
 
 	/** */
-	public Jogador adiciona(Jogador jogador) {
+	public Jogador adiciona(Jogador jogador)  throws DAOException {
 		database = dbHelper.getWritableDatabase();
 		
         ContentValues values = new ContentValues(); 
@@ -62,8 +63,9 @@ public class JogadorDAO {
     	   jogador =  cursorToJogador(cursor); 
       
        }catch(Exception ex){
-    	   ex.getCause();
     	   jogador = new Jogador();
+    	   throw  new DAOException("Não foi possível adicionar o Jogador.");
+
        }finally{
     	   if(database != null && database.isOpen()){
 				database.close();
@@ -76,7 +78,7 @@ public class JogadorDAO {
 	}
 	
 	/** */
-	public void atualiza(Jogador jogador) {
+	public void atualiza(Jogador jogador)  throws DAOException {
 		database = dbHelper.getWritableDatabase();
 		
         ContentValues values = new ContentValues(); 
@@ -87,8 +89,7 @@ public class JogadorDAO {
     	  database.update(DbHelper.TABELA_JOGADOR, values, DbHelper.COLUNA_JOGADOR_ID + " = " + jogador.getId(), null);
     	       
        }catch(Exception ex){
-    	   ex.getCause();
-    	   jogador = new Jogador();
+    	   throw  new DAOException("Não foi possível atualizar o Jogador.");
        }finally{
     	   if(database != null && database.isOpen()){
 				database.close();
@@ -99,7 +100,7 @@ public class JogadorDAO {
 	}
 	
 	/** */
-	public List<Jogador> obterListaJogadores() {
+	public List<Jogador> obterListaJogadores()  throws DAOException {
 		List<Jogador> jogadores = new ArrayList<Jogador>();
 		database = dbHelper.getWritableDatabase();
 		try{
@@ -109,7 +110,7 @@ public class JogadorDAO {
 	 		}
 	 	  
 		    }catch(Exception ex){
-		    	ex.getCause();
+		    	throw  new DAOException("Não foi possível obter a lista de Jogadores.");
 			}finally{
 				if(database != null && database.isOpen()){
 					database.close();
@@ -120,7 +121,7 @@ public class JogadorDAO {
 	}
 	
 	/** */
-	public Jogador obterJogador(int id) {
+	public Jogador obterJogador(int id)  throws DAOException {
 		Jogador jogador = new Jogador();
 		database = dbHelper.getWritableDatabase();
 		try{
@@ -131,7 +132,7 @@ public class JogadorDAO {
 	 		}
 	 	  
 		    }catch(Exception ex){
-		    	ex.getCause();
+		    	throw  new DAOException("Não foi possível obter o Jogador.");
 			}finally{
 				if(database != null && database.isOpen()){
 					database.close();
@@ -141,7 +142,7 @@ public class JogadorDAO {
     }
 	
 	/** */
-	public List<Jogador> obterListaJogadorApelido(String apelido) {
+	public List<Jogador> obterListaJogadorApelido(String apelido) throws DAOException  {
 		List<Jogador> jogadores = new ArrayList<Jogador>();
 		database = dbHelper.getWritableDatabase();
 		String sql = "SELECT * FROM " + DbHelper.TABELA_JOGADOR + " WHERE "+ DbHelper.COLUNA_JOGADOR_APELIDO  + " like  '%" + apelido + "%' ";
@@ -151,7 +152,7 @@ public class JogadorDAO {
 	 	    	jogadores.add(cursorToJogador(cursor));
 	    	} 	  
 		    }catch(Exception ex){
-		    	ex.getCause();
+		    	throw  new DAOException("Não foi possível obter os Jogadores pelo Apelido.");
 			}finally{
 				if(database != null && database.isOpen()){
 					database.close();
@@ -160,8 +161,9 @@ public class JogadorDAO {
 		return jogadores;
 	}
 	
-	/** */
-	public List<Jogador> obterListaJogadorNome(String nome) {
+	/**
+	 * @throws DAOException  */
+	public List<Jogador> obterListaJogadorNome(String nome) throws DAOException {
 		List<Jogador> jogadores = new ArrayList<Jogador>();
 		database = dbHelper.getWritableDatabase();
 		try{
@@ -171,7 +173,7 @@ public class JogadorDAO {
 	 	    	jogadores.add(cursorToJogador(cursor));
 	    	} 	  
 		    }catch(Exception ex){
-		    	ex.getCause();
+		    	throw  new DAOException("Não foi possível obter os Jogadores por Nome.");
 			}finally{
 				if(database != null && database.isOpen()){
 					database.close();

@@ -67,8 +67,9 @@ public class ModalidadeDAO {
 		return modalidades;
 	}
 	
-	/****/
-	public Modalidade obterModalidade(int id) {
+	/**
+	 * @throws DAOException **/
+	public Modalidade obterModalidade(int id) throws DAOException {
 		Modalidade modalidade = new Modalidade();
 		database = dbHelper.getWritableDatabase();
 		try{
@@ -79,7 +80,7 @@ public class ModalidadeDAO {
 	 		}
 	 	  
 		    }catch(Exception ex){
-		    	ex.getCause();
+		    	throw  new DAOException("Não foi possível obter as modalidade. ");
 			}finally{
 				if(database != null && database.isOpen()){
 					database.close();
