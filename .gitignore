@@ -1,3 +1,7 @@
-/build
-/classpath
-/project
+.gitignore
+*.class
+*.DS_Store
+*.classpath
+*.project
+.metadata*
+.settings*
