@@ -1,5 +1,6 @@
 package br.com.mackenzie.peladafc.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -27,8 +28,8 @@ public class JogadorDAO {
 	
 	private SQLiteDatabase database;
 	private DbHelper dbHelper;
-	private String[] allColumns = {DbHelper.COLUNA_ID_JOGADOR, DbHelper.COLUNA_NOME_JOGADOR, 
-			DbHelper.COLUNA_APELIDO_JOGADOR,DbHelper.COLUNA_CLASSIFICACAO_JOGADOR };
+	private String[] allColumns = {DbHelper.COLUNA_JOGADOR_ID, DbHelper.COLUNA_JOGADOR_NOME, 
+			DbHelper.COLUNA_JOGADOR_APELIDO,DbHelper.COLUNA_JOGADOR_CLASSIFICACAO };
 	
 	public JogadorDAO(Context context) {          
 		dbHelper = new DbHelper(context);
@@ -45,43 +46,138 @@ public class JogadorDAO {
 	}
 
 	/** */
-	public void adiciona(Jogador jogador) {
+	public Jogador adiciona(Jogador jogador) {
+		database = dbHelper.getWritableDatabase();
+		
         ContentValues values = new ContentValues(); 
-        values.put(DbHelper.COLUNA_NOME_JOGADOR, jogador.getNome()); 
-        values.put(DbHelper.COLUNA_APELIDO_JOGADOR,jogador.getApelido()); 
-        values.put(DbHelper.COLUNA_CLASSIFICACAO_JOGADOR, jogador.getClassificao()); 
-        database.insert(DbHelper.TABELA_JOGADOR, null, values); 
-
+        values.put(DbHelper.COLUNA_JOGADOR_NOME, jogador.getNome()); 
+        values.put(DbHelper.COLUNA_JOGADOR_APELIDO,jogador.getApelido()); 
+        values.put(DbHelper.COLUNA_JOGADOR_CLASSIFICACAO, jogador.getClassificao()); 
+       try{
+    	   long insertId = database.insert(DbHelper.TABELA_JOGADOR, null, values); 
+    	   // mostrar
+    	   Cursor cursor = database.query(DbHelper.TABELA_JOGADOR, allColumns, DbHelper.COLUNA_JOGADOR_ID + " = " + 
+    			   insertId, null,null, null, null); 
+    	   cursor.moveToFirst(); 
+    	   jogador =  cursorToJogador(cursor); 
+      
+       }catch(Exception ex){
+    	   ex.getCause();
+    	   jogador = new Jogador();
+       }finally{
+    	   if(database != null && database.isOpen()){
+				database.close();
+			}
+       }
+       
+       return jogador;
+       
+       
 	}
 	
 	/** */
 	public void atualiza(Jogador jogador) {
-	
+		database = dbHelper.getWritableDatabase();
+		
+        ContentValues values = new ContentValues(); 
+        values.put(DbHelper.COLUNA_JOGADOR_NOME, jogador.getNome()); 
+        values.put(DbHelper.COLUNA_JOGADOR_APELIDO,jogador.getApelido()); 
+        values.put(DbHelper.COLUNA_JOGADOR_CLASSIFICACAO, jogador.getClassificao()); 
+       try{
+    	  database.update(DbHelper.TABELA_JOGADOR, values, DbHelper.COLUNA_JOGADOR_ID + " = " + jogador.getId(), null);
+    	       
+       }catch(Exception ex){
+    	   ex.getCause();
+    	   jogador = new Jogador();
+       }finally{
+    	   if(database != null && database.isOpen()){
+				database.close();
+			}
+       }
+       
+       
 	}
 	
 	/** */
 	public List<Jogador> obterListaJogadores() {
-		return null;
+		List<Jogador> jogadores = new ArrayList<Jogador>();
+		database = dbHelper.getWritableDatabase();
+		try{
+			Cursor cursor = database.rawQuery("SELECT * FROM " + DbHelper.TABELA_JOGADOR, null );
+	    	 while(cursor.moveToNext()){
+	 	    	jogadores.add(cursorToJogador(cursor));
+	 		}
+	 	  
+		    }catch(Exception ex){
+		    	ex.getCause();
+			}finally{
+				if(database != null && database.isOpen()){
+					database.close();
+				}
+			}
+		return jogadores;
 	
 	}
 	
 	/** */
 	public Jogador obterJogador(int id) {
-     // To show how to query 
-      Cursor cursor = database.query(DbHelper.TABELA_JOGADOR, allColumns, DbHelper.COLUNA_ID_JOGADOR + " = " + 
-      id, null,null, null, null); 
-      cursor.moveToFirst(); 
-      return cursorToJogador(cursor); 	
+		Jogador jogador = new Jogador();
+		database = dbHelper.getWritableDatabase();
+		try{
+			Cursor cursor = database.query(DbHelper.TABELA_JOGADOR, allColumns, DbHelper.COLUNA_JOGADOR_ID + " = " + 
+				      id, null,null, null, null); 
+	    	 if(cursor.moveToFirst()){
+	 	    	jogador = cursorToJogador(cursor);
+	 		}
+	 	  
+		    }catch(Exception ex){
+		    	ex.getCause();
+			}finally{
+				if(database != null && database.isOpen()){
+					database.close();
+				}
+			}
+		return jogador;
     }
 	
 	/** */
 	public List<Jogador> obterListaJogadorApelido(String apelido) {
-		return null;
+		List<Jogador> jogadores = new ArrayList<Jogador>();
+		database = dbHelper.getWritableDatabase();
+		String sql = "SELECT * FROM " + DbHelper.TABELA_JOGADOR + " WHERE "+ DbHelper.COLUNA_JOGADOR_APELIDO  + " like  '%" + apelido + "%' ";
+		try{
+			Cursor cursor = database.rawQuery (sql, null); 
+	    	while(cursor.moveToNext()){
+	 	    	jogadores.add(cursorToJogador(cursor));
+	    	} 	  
+		    }catch(Exception ex){
+		    	ex.getCause();
+			}finally{
+				if(database != null && database.isOpen()){
+					database.close();
+				}
+			}
+		return jogadores;
 	}
 	
 	/** */
 	public List<Jogador> obterListaJogadorNome(String nome) {
-		return null;
+		List<Jogador> jogadores = new ArrayList<Jogador>();
+		database = dbHelper.getWritableDatabase();
+		try{
+			Cursor cursor = database.query(DbHelper.TABELA_JOGADOR, allColumns, DbHelper.COLUNA_JOGADOR_NOME + " like '%" + 
+				      nome + "%' ", null,null, null, null); 
+	    	while(cursor.moveToNext()){
+	 	    	jogadores.add(cursorToJogador(cursor));
+	    	} 	  
+		    }catch(Exception ex){
+		    	ex.getCause();
+			}finally{
+				if(database != null && database.isOpen()){
+					database.close();
+				}
+			}
+		return jogadores;
 	}
 	
 

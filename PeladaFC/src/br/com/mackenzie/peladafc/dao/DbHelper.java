@@ -12,29 +12,28 @@ public class DbHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 	public static final String TABELA_JOGADOR = "JOGADOR";
 	 
-	public static final String COLUNA_ID_JOGADOR = "jogador_id";
-	public static final String COLUNA_APELIDO_JOGADOR = "jogador_apelido";
-	public static final String COLUNA_NOME_JOGADOR = "jogador_nome";
-	public static final String COLUNA_CLASSIFICACAO_JOGADOR = "jogador_classificacao";
+	public static final String COLUNA_JOGADOR_ID = "jogador_id";
+	public static final String COLUNA_JOGADOR_APELIDO = "jogador_apelido";
+	public static final String COLUNA_JOGADOR_NOME = "jogador_nome";
+	public static final String COLUNA_JOGADOR_CLASSIFICACAO = "jogador_classificacao";
 
-	public static final String TABELA_MODALIDADE = "JOGADOR";
-	 
-	public static final String COLUNA_ID_MODALIDADE = "modalidade_id";
-	public static final String COLUNA_DESCRICAO_MODALIDADE = "modalidade_descricao";
-	public static final String COLUNA_QTDE_JOGADORES_MODALIDADE = "modalidade_qtde_jogadores";
+	public static final String TABELA_MODALIDADE = "MODALIDADE";
+	public static final String COLUNA_MODALIDADE_ID = "modalidade_id";
+	public static final String COLUNA_MODALIDADE_DESCRICAO = "modalidade_descricao";
+	public static final String COLUNA_MODALIDADE_QTDE_JOGADORES = "modalidade_qtde_jogadores";
 	
 	private static final String JOGADOR_CREATE_TABLE = "CREATE TABLE "
-			+ TABELA_JOGADOR + "  (" + COLUNA_ID_JOGADOR
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ COLUNA_APELIDO_JOGADOR + " text not null ," 
-			+ COLUNA_NOME_JOGADOR + " text not null, "
-			+ COLUNA_CLASSIFICACAO_JOGADOR + "INTEGER );";
+			+ TABELA_JOGADOR + "  (" + COLUNA_JOGADOR_ID
+			+ " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+			+ COLUNA_JOGADOR_APELIDO + " text not null ," 
+			+ COLUNA_JOGADOR_NOME + " text not null, "
+			+ COLUNA_JOGADOR_CLASSIFICACAO + " INTEGER );";
 
 		private static final String MODALIDADE_CREATE_TABLE = "CREATE TABLE "
-			+ TABELA_MODALIDADE + "  (" + COLUNA_ID_MODALIDADE
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ COLUNA_DESCRICAO_MODALIDADE + " text not null , "
-			+ COLUNA_CLASSIFICACAO_JOGADOR + "INTEGER );";
+			+ TABELA_MODALIDADE + "  ( " + COLUNA_MODALIDADE_ID
+			+ " INTEGER PRIMARY KEY ,  "
+			+ COLUNA_MODALIDADE_DESCRICAO + " text not null ,  "
+			+ COLUNA_MODALIDADE_QTDE_JOGADORES + " INTEGER );";
 
 		public DbHelper(Context context) {
 			super(context, DB_NAME, null, DATABASE_VERSION);
@@ -59,16 +58,19 @@ public class DbHelper extends SQLiteOpenHelper {
 			
 			//Insere valores iniciais na tabela MODALIDADE
 			ContentValues values = new ContentValues();
-			values.put(COLUNA_DESCRICAO_MODALIDADE, "CAMPO");
-			values.put(COLUNA_QTDE_JOGADORES_MODALIDADE, 11);
+			values.put(COLUNA_MODALIDADE_ID, 1);
+			values.put(COLUNA_MODALIDADE_DESCRICAO, "CAMPO");
+			values.put(COLUNA_MODALIDADE_QTDE_JOGADORES, 11);
 			db.insert(TABELA_MODALIDADE, null, values);
 			values.clear();
-			values.put(COLUNA_DESCRICAO_MODALIDADE, "QUADRA");
-			values.put(COLUNA_QTDE_JOGADORES_MODALIDADE, 5);
+			values.put(COLUNA_MODALIDADE_ID, 2);
+			values.put(COLUNA_MODALIDADE_DESCRICAO, "QUADRA");
+			values.put(COLUNA_MODALIDADE_QTDE_JOGADORES, 5);
 			db.insert(TABELA_MODALIDADE, null, values);
 			values.clear();
-			values.put(COLUNA_DESCRICAO_MODALIDADE, "SOCIETY");
-			values.put(COLUNA_QTDE_JOGADORES_MODALIDADE, 7);
+			values.put(COLUNA_MODALIDADE_ID, 3);
+			values.put(COLUNA_MODALIDADE_DESCRICAO, "SOCIETY");
+			values.put(COLUNA_MODALIDADE_QTDE_JOGADORES, 7);
 			db.insert(TABELA_MODALIDADE, null, values);
 			values.clear();
 			

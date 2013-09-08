@@ -9,8 +9,8 @@ import br.com.mackenzie.peladafc.model.Jogador;
 public class DbAdapter {
 	private SQLiteDatabase database;
 	private DbHelper dbHelper;
-	private String[] allColumns = {DbHelper.COLUNA_ID_JOGADOR, DbHelper.COLUNA_NOME_JOGADOR, 
-			DbHelper.COLUNA_APELIDO_JOGADOR,DbHelper.COLUNA_CLASSIFICACAO_JOGADOR };
+	private String[] allColumns = {DbHelper.COLUNA_JOGADOR_ID, DbHelper.COLUNA_JOGADOR_NOME, 
+			DbHelper.COLUNA_JOGADOR_APELIDO,DbHelper.COLUNA_JOGADOR_CLASSIFICACAO };
 	
 	public DbAdapter(Context context) {          
 		dbHelper = new DbHelper(context);
@@ -18,12 +18,12 @@ public class DbAdapter {
 	
 	public Jogador createJogador(String nome, String apelido, int classificacao) { 
         ContentValues values = new ContentValues(); 
-        values.put(DbHelper.COLUNA_NOME_JOGADOR, nome); 
-        values.put(DbHelper.COLUNA_APELIDO_JOGADOR,apelido); 
-        values.put(DbHelper.COLUNA_CLASSIFICACAO_JOGADOR, classificacao); 
+        values.put(DbHelper.COLUNA_JOGADOR_NOME, nome); 
+        values.put(DbHelper.COLUNA_JOGADOR_APELIDO,apelido); 
+        values.put(DbHelper.COLUNA_JOGADOR_CLASSIFICACAO, classificacao); 
         long insertId = database.insert(DbHelper.TABELA_JOGADOR, null, values); 
        // To show how to query 
-       Cursor cursor = database.query(DbHelper.TABELA_JOGADOR, allColumns, DbHelper.COLUNA_ID_JOGADOR + " = " + 
+       Cursor cursor = database.query(DbHelper.TABELA_JOGADOR, allColumns, DbHelper.COLUNA_JOGADOR_ID + " = " + 
        insertId, null,null, null, null); 
        cursor.moveToFirst(); 
        return cursorToJogador(cursor); 

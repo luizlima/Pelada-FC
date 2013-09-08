@@ -1,9 +1,9 @@
 package br.com.mackenzie.peladafc.view;
 
-import br.com.mackenzie.peladafc.R;
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import br.com.mackenzie.peladafc.R;
 
 public class MainActivity extends Activity {
 

@@ -1,9 +1,12 @@
 package br.com.mackenzie.peladafc.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import br.com.mackenzie.peladafc.controller.JogadorController;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Modalidade;
 
 //
@@ -23,20 +26,66 @@ import br.com.mackenzie.peladafc.model.Modalidade;
 /** */
 public class ModalidadeDAO {
 	
-	private Context context;
+	private SQLiteDatabase database;
+	private DbHelper dbHelper;
+	private String[] allColumns = {DbHelper.COLUNA_MODALIDADE_ID, DbHelper.COLUNA_MODALIDADE_DESCRICAO, 
+			DbHelper.COLUNA_MODALIDADE_QTDE_JOGADORES};
 	
-	/** */
-	public List<Modalidade> obterModalidades() {
-		return null;
-	}
-	
-	/** */
-	public Modalidade obterModalidade(int id) {
-		return null;
-	}
 	
 	public ModalidadeDAO(Context context) {
-		// TODO Auto-generated constructor stub
-		this.context = context;
+		dbHelper = new DbHelper(context);
+	
 	}
+	
+	private Modalidade cursorToModalidade(Cursor cursor) {
+		Modalidade modalidade = new Modalidade();
+		modalidade.setId(cursor.getInt(0));
+		modalidade.setDescricao(cursor.getString(1));
+		modalidade.setJogadoresPorTime(cursor.getInt(2));
+		return modalidade;
+	}
+	/**
+	 * @throws DAOException  */
+	public List<Modalidade> obterModalidades() throws DAOException {
+		database = dbHelper.getWritableDatabase();
+		List<Modalidade> modalidades = new ArrayList<Modalidade>();
+	    try{
+	    	Cursor cursor = database.rawQuery("SELECT * FROM " + DbHelper.TABELA_MODALIDADE, null);
+	    	 while(cursor.moveToNext()){
+	 	    	modalidades.add(cursorToModalidade(cursor));
+	 		}
+	 	  
+	    }catch(Exception ex){
+	    	throw  new DAOException("Não foi possível obter as modalidades. ");
+		}finally{
+			if(database != null && database.isOpen()){
+				database.close();
+			}
+		}
+	      
+	   
+		return modalidades;
+	}
+	
+	/****/
+	public Modalidade obterModalidade(int id) {
+		Modalidade modalidade = new Modalidade();
+		database = dbHelper.getWritableDatabase();
+		try{
+			Cursor cursor = database.query(DbHelper.TABELA_MODALIDADE, allColumns, DbHelper.COLUNA_MODALIDADE_ID + " = " + 
+				      id, null,null, null, null); 
+	    	 if(cursor.moveToFirst()){
+	 	    	modalidade = cursorToModalidade(cursor);
+	 		}
+	 	  
+		    }catch(Exception ex){
+		    	ex.getCause();
+			}finally{
+				if(database != null && database.isOpen()){
+					database.close();
+				}
+			}
+		return modalidade;
+	}
+	
 }
