@@ -2,7 +2,9 @@ package br.com.mackenzie.peladafc.controller;
 
 import java.util.List;
 
+import android.content.Context;
 import br.com.mackenzie.peladafc.dao.ModalidadeDAO;
+import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Modalidade;
 
 //
@@ -29,16 +31,23 @@ public class ModalidadeController {
 	
 	/** */
 	public Modalidade escolherModalidade() {
-		return null;
+		return modalidade;
 	}
 	
-	/** */
-	public List<Modalidade> obterModalidades() {
-		return null;
+	/**
+	 * @throws DAOException  */
+	public List<Modalidade> obterModalidades() throws DAOException {
+		return this.modalidadeDAO.obterModalidades();
 	}
 	
 	/** */
 	public Modalidade obterModalidade() {
 		return null;
+	}
+	
+	public ModalidadeController(Context context) {
+		// TODO Auto-generated constructor stub
+		this.modalidadeDAO = new ModalidadeDAO(context);
+		this.modalidade = new Modalidade();
 	}
 }

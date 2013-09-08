@@ -31,17 +31,17 @@ public class JogadorController {
 	/** */
 	private JogadorDAO jogadorDAO;
 	
-	private Context viewContext;
-	
-	/** */
-	public void adicionar(String nome, String apelido){
+	/**
+	 * @throws DAOException  */
+	public void adicionar(String nome, String apelido) throws DAOException {
 		jogador = new Jogador(nome,apelido,3);
 		jogadorDAO.adiciona(jogador);
 	}
 	
 	/**
+	 * @throws DAOException 
 	 * @throws ConsultarJogadorException  */
-	public List<Jogador> consultarPorNome(String nome) throws ControllerException {
+	public List<Jogador> consultarPorNome(String nome) throws ControllerException, DAOException {
 		if(nome.length() > 2)
 			jogadores = jogadorDAO.obterListaJogadorNome(nome);
 		else
@@ -50,14 +50,16 @@ public class JogadorController {
 		return jogadores;
 	}
 	
-	/** */
-	public void atualizar(Jogador jogador) {
+	/**
+	 * @throws DAOException  */
+	public void atualizar(Jogador jogador) throws DAOException {
 		jogadorDAO.atualiza(jogador);
 	}
 	
 	/**
+	 * @throws DAOException 
 	 * @throws ConsultarJogadorException  */
-	public List<Jogador> obterJogadoresApelido(String apelido) throws ControllerException {
+	public List<Jogador> obterJogadoresApelido(String apelido) throws ControllerException, DAOException {
 		if(apelido.length() > 2)
 			jogadores = jogadorDAO.obterListaJogadorApelido(apelido);
 		else
@@ -66,16 +68,16 @@ public class JogadorController {
 		return jogadores;
 	}
 	
-	/** */
-	public List<Jogador> obterJogadores() {
+	/**
+	 * @throws DAOException  */
+	public List<Jogador> obterJogadores() throws DAOException {
 		return jogadorDAO.obterListaJogadores();
 	}
 
 	/** */
 	public JogadorController(Context context) {
 		this.jogadores =  new ArrayList<Jogador>();
-		this.viewContext = context;
-		this.jogadorDAO = new JogadorDAO(viewContext);
+		this.jogadorDAO = new JogadorDAO(context);
 	}
 	
 	
